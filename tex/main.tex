@@ -1,0 +1,644 @@
+\documentclass[11pt,oneside]{memoir}
+\usepackage{makeidx,latexsym,amssymb}
+\usepackage{fancybox}
+\usepackage{graphics,epsfig}
+\usepackage{ifthen}
+\usepackage{epstopdf}
+\usepackage{amsmath,amsfonts,pgf,tikz,hyperref,amsthm,xcolor}
+\usepackage{latexsym,amsthm,amsfonts}
+%\usepackage{amsthm}
+%\usepackage{makeidx}
+\usepackage{enumerate}
+\usepackage[all]{xy}
+
+%for TAC
+
+\usepackage{amssymb,amsthm,enumerate}
+%\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfplots}
+\usepackage{tkz-fct}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\usepackage{CJKutf8}
+
+
+
+
+%% Language and font encodings
+\usepackage{mathrsfs}
+\usepackage{paralist}
+%\usepackage[inline]{enumitem}
+\usepackage[many]{tcolorbox}
+
+\usepackage{tikz,lipsum,lmodern}
+%\usepackage{hyperref}
+\usepackage[english]{babel}
+%\usepackage[utf8x]{inputenc}
+\usepackage{float}
+
+\usepackage{polynom}
+\makeatletter
+\def\pld@CF@loop#1+{%
+    \ifx\relax#1\else
+        \begingroup
+          \pld@AccuSetX11%
+          \def\pld@frac{{}{}}\let\pld@symbols\@empty\let\pld@vars\@empty
+          \pld@false
+          #1%
+          \let\pld@temp\@empty
+          \pld@AccuIfOne{}{\pld@AccuGet\pld@temp
+                            \edef\pld@temp{\noexpand\pld@R\pld@temp}}%
+           \pld@if \pld@Extend\pld@temp{\expandafter\pld@F\pld@frac}\fi
+           \expandafter\pld@CF@loop@\pld@symbols\relax\@empty
+           \expandafter\pld@CF@loop@\pld@vars\relax\@empty
+           \ifx\@empty\pld@temp
+               \def\pld@temp{\pld@R11}%
+           \fi
+          \global\let\@gtempa\pld@temp
+        \endgroup
+        \ifx\@empty\@gtempa\else
+            \pld@ExtendPoly\pld@tempoly\@gtempa
+        \fi
+        \expandafter\pld@CF@loop
+    \fi}
+\def\pld@CMAddToTempoly{%
+    \pld@AccuGet\pld@temp\edef\pld@temp{\noexpand\pld@R\pld@temp}%
+    \pld@CondenseMonomials\pld@false\pld@symbols
+    \ifx\pld@symbols\@empty \else
+        \pld@ExtendPoly\pld@temp\pld@symbols
+    \fi
+    \ifx\pld@temp\@empty \else
+        \pld@if
+            \expandafter\pld@IfSum\expandafter{\pld@temp}%
+                {\expandafter\def\expandafter\pld@temp\expandafter
+                    {\expandafter\pld@F\expandafter{\pld@temp}{}}}%
+                {}%
+        \fi
+        \pld@ExtendPoly\pld@tempoly\pld@temp
+        \pld@Extend\pld@tempoly{\pld@monom}%
+    \fi}
+\makeatother
+
+
+
+
+
+\floatstyle{boxed} 
+\restylefloat{figure}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+%\AtBeginEnvironment{align}{\setcounter{equation}{0}}%%reset counter
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{CJKutf8}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+%\usepackage[shortlabels]{enumitem}
+
+\usepackage{amsthm}
+
+
+
+
+
+
+
+
+
+\newtheorem{definition}{Definition}[section]
+%\newtheorem{example}[definition]{Example}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{condition}[definition]{Condition}
+\newtheorem{convention}[definition]{Convention}
+\newtheorem{exercise}[definition]{Exercise}
+\newtheorem{cyu}{Check your understanding}[section]
+
+
+%\newcommand{\dfrac}{\displaystyle\frac}
+\newtheorem{thr}{Theorem}[section]
+\newcommand{\bthr}[1]{\begin{thr}\emph{#1}}
+\newcommand{\ethr}{\end{thr}}
+\newtheorem{pr}[thr]{Proposition}
+\newcommand{\bprp}[1]{\begin{pr}\emph{#1}}
+\newcommand{\eprp}{\end{pr}}
+\newtheorem{ex}[thr]{Example}
+\newcommand{\bex}[1]{\begin{ex}\emph{#1}}
+\newcommand{\eex}{\end{ex}}
+\newcommand{\beqn}{\begin{eqnarray*}}
+\newcommand{\eeqn}{\end{eqnarray*}}
+\newtheorem{defin}[thr]{Definition}
+\newcommand{\bdfn}[1]{\begin{defin}{\emph{#1}}}
+\newcommand{\edfn}{\end{defin}}
+%\newcommand{\binom}[2]{\left(\begin{array}{c}{#1}\\{#2}\end{array}\right)}
+\newcommand{\st}{\,:\,}
+\newcommand{\nnum}{\mathbb{N}}
+\newcommand{\znum}{\mathbb{Z}}
+\newcommand{\qnum}{\mathbb{Q}}
+\newcommand{\rnum}{\mathbb{R}}
+%\newenvironment{proof}{\noindent\textbf{Proof}: }{}
+\newcommand{\bprf}{\begin{proof}}
+\newcommand{\eprf}{$\phantom{X}$\hfill$\rule{2mm}{2mm}$
+\end{proof}}
+\newcommand{\btrv}{\begin{trivlist}}
+\newcommand{\etrv}{\end{trivlist}}
+
+
+\newcommand{\version}{2}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcounter{example}
+\setcounter{example}{0}
+\newenvironment{example}{\sffamily \refstepcounter{example} \ \\[5mm] \noindent {\bfseries \textsf{Example \theexample}}\ }{\  \\[3mm] \rmfamily}
+
+
+\newtheorem{thm}[example]{Theorem}
+\newtheorem{lem}[example]{Lemma}
+\makechapterstyle{booklet}{%  needs graphicx package
+ \chapterstyle{default}
+ \setlength{\beforechapskip}{-1cm}
+ \setlength{\afterchapskip}{1cm}
+ \setlength{\midchapskip}{2cm}
+ \renewcommand*{\printchaptername}{\raggedleft}
+ \renewcommand*{\chapnamefont}{\raggedleft}
+ \renewcommand*{\chaptitlefont}{\normalfont\huge\bfseries\sffamily\raggedleft}
+ \renewcommand*{\chapternamenum}{}
+ \renewcommand*{\printchapternum}{\makebox[0pt][l]{\hspace{0.2em}%
+   {\hspace{0.5cm}\normalfont\huge\bfseries\sffamily\thechapter}}}
+ \renewcommand*{\afterchapternum}{\ \\[-1.40cm]\hspace{1.5cm}\hrule\vspace{0.1cm}}
+\renewcommand*{\printchapternonum}{\vphantom{\chapnamefont 1}\afterchapternum}
+ \renewcommand*{\afterchaptertitle}{\vskip 0.4cm
+   \hrule\vskip\afterchapskip}
+\renewcommand*{\clearforchapter}{\newpage}
+}
+
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\limh}{\lim_{h \rightarrow 0}}
+
+\chapterstyle{booklet}
+\settocdepth{subsection}
+%\setsecnumdepth{subsection}
+
+\setsecheadstyle{\bfseries\Large\sffamily}
+\setbeforesecskip{0.2cm}
+\setaftersecskip{0.1cm}
+
+\setsubsecheadstyle{\bfseries\large\sffamily}
+\setbeforesubsecskip{0.2cm}
+\setaftersubsecskip{0.1cm}
+
+\setsubsubsecheadstyle{\bfseries\sffamily}
+\setbeforesubsubsecskip{0cm}
+\setaftersubsubsecskip{0cm}
+
+%\textwidth 14cm
+%\textheight 21cm
+%\oddsidemargin 1.0cm
+%\evensidemargin 1.0cm
+\marginparwidth 0cm
+\marginparsep 0cm
+%\topmargin 0.0cm
+
+\oddsidemargin=-5mm
+\evensidemargin=-5mm
+\textwidth=17cm
+\topmargin=-10mm
+\textheight=23.5cm
+
+\parindent 0cm
+\parskip 0.3cm
+
+%\renewcommand{\labelenumi}{(\arabic{enumi})}   %Nummerierungen
+\tightlists
+
+\makeindex
+
+
+%\pgfdeclareimage[height=3in]{drx}{drx}
+%\pgfdeclareimage[height=8in]{tut5q}{tut5q}
+%\pgfdeclareimage[height=3in]{tut5q3a}{tut5q3a}
+%\pgfdeclareimage[height=4in]{tut6q2}{tut6q2a}
+%\pgfdeclareimage[height=2.3in]{tut6q3a}{tut6q3a}
+\begin{document}
+
+\fontfamily{cmss}
+
+\thispagestyle{empty}
+
+\begin{center}
+\sffamily
+\ \\[2cm]
+{\LARGE Department of Mathematics \& Applied Mathematics}\\[1cm]
+{\bfseries\Huge Notes on active inference, mostly from the book by Parr, Pezzulo and Friston}\\[6cm]
+\leavevmode
+\setlength{\epsfxsize}{4cm}
+\epsfbox{UCTlogonew.eps}\\[1cm]
+\Large
+Associate Professor Jonathan Shock\\
+Department of Mathematics \& Applied Mathematics \\
+University of Cape Town \\
+jon.shock@gmail.com\\
+[1cm]
+
+
+(\today)
+\end{center}
+
+
+
+
+\setcounter{page}{1}
+
+
+\pagestyle{ruled}
+\makeevenhead{ruled}{\bfseries\sffamily\leftmark}{}{}
+\makeoddhead{ruled}{}{}{\sffamily\rightmark}
+\newpage 
+\tableofcontents        % Contents
+\newpage
+
+\chapter{Starting in chapter 4}
+Out general aim will be to observe things that we expect to observe. We will come on later to the things that we WANT to observe, when we think about preferences, but now we can just think about the things that our model predicts that we are likely to see. That is that we want to have the highest probability of making the observations that we make. ie maximising $P(y)$. $y$ is a measure of our sensory states.
+
+We have a generative model which includes both a prior over external states $P(x)$ as well as $P(y|x)$ - ie. the probability of having a particular sensory measurement given that the world is in a particular state.
+
+From $P(x)$ and $P(y|x)$ (which means that we also know $P(x,y)$, we can, in theory work out $P(y)$  but both of these require us to sum over all possible external states which is generally impossible.
+
+To calculate $P(y)$ we would need to calculate:
+
+\begin{equation}P(y)=\sum_x P(y|x)P(x)=\mathbb{E}_{P(x)}[P(y|x)]\end{equation}
+
+The problem here is the expectation over all $P(x)$. Instead we will have some approximation of $P(x)$ which we would like to get as close to $P(x)$ as possible. This is $Q(x)$. We will alter $Q(x)$ so that we can minimise surprise.
+
+We will use Jensen's inequality which says that:
+\begin{equation}\mathbb{E}(\ln(x))\le \ln(\mathbb{E}(x))\end{equation}
+
+So we can write:
+
+\begin{align}
+\ln P(y)&=\ln \sum_x P(y|x)P(x)=\ln \sum_x P(y|x)\frac{P(x)}{Q(x)} Q(x)\\
+&=\ln \sum_x \frac{P(y,x)}{Q(x)}Q(x)=\ln \mathbb{E}_{Q(x)}\left[\frac{P(y,x)}{Q(x)}\right]
+\end{align}
+Again, we want to minimise this quantity by making our model match the world, and by making $Q(x)$ as close as possible to $P(y|x)$ for a given set of observations $y$.
+
+We use Jensen now to write:
+\begin{align}
+\ln P(y)&=\ln \sum_x P(y|x)P(x)=\ln \sum_x P(y|x)\frac{P(x)}{Q(x)} Q(x)\\
+&=\ln \sum_x \frac{P(y,x)}{Q(x)}Q(x)=\ln \mathbb{E}_{Q(x)}\left[\frac{P(y,x)}{Q(x)}\right]\\
+&\ge  \mathbb{E}_{Q(x)}\left[\ln\frac{P(y,x)}{Q(x)}\right]
+\end{align}
+We define as the negative of the free energy:
+\begin{equation}-F[Q,y]=\mathbb{E}_{Q(x)}\left[\ln\frac{P(y,x)}{Q(x)}\right]\end{equation}
+So we know that while the free energy will be greater than the surprise. If we can minimise the free energy we are minimising the surprise, or maximising the model evidence. We can minimise the free energy by making sure that our observations match our expectations (changing $y$, or by updating $Q(x)$.
+
+We can write the free energy as:
+
+\begin{align}
+    F[Q,y]&=-\mathbb{E}_{Q(x)}\left[\ln\frac{P(y,x)}{Q(x)}\right]=-\mathbb{E}_{Q(x)}\left[\ln\frac{P(x|y)P(y)}{Q(x)}\right]\\
+    &=-\mathbb{E}_{Q(x)}\left[\ln P(x|y)\right]-\mathbb{E}_{Q(x)}\left[\ln P(y)\right]+\mathbb{E}_{Q(x)}\left[\ln Q(x)\right] \\
+    &=-\mathbb{E}_{Q(x)}\left[\ln P(x|y)\right]-\ln P(y)+\mathbb{E}_{Q(x)}\left[\ln Q(x)\right] \\
+    &=\mathbb{E}_{Q(x)}\left[\ln Q(x)\right]-\mathbb{E}_{Q(x)}\left[\ln P(x|y)\right]-\ln P(y) \\
+    &=\mathbb{E}_{Q(x)}\left[\ln Q(x)-\ln P(x|y)\right]-\ln P(y) \label{eq1.5}\\
+    &=D_{KL}\left[Q(x)||P(x|y)\right]-\ln P(y)
+\end{align}
+So again, minimising the free energy can be done by making $Q(x)$ as close as possible to $P(x|y)$ (when averaged over $Q(x)$ (minimising the divergence), or by minimising the surprise.
+
+We must remember that $-\ln P(y)$ will itself be positive.
+
+By taking:
+\begin{equation}\ln P(x,y)=\ln P(y)+\ln P(x|y)\end{equation}
+we can either take the expectation of this over the distribution $P(x|y)$ ie. the posterior probability, or over the approximation to the posterior $Q(x)$:
+\begin{equation}\label{eq1.7}\mathbb{E}_{P(x|y)}\left[\ln P(x,y)\right]=\ln P(y)+\mathbb{E}_{P(x|y)}\left[\ln(P(x|y)\right]\end{equation}
+or
+\begin{equation}
+    \mathbb{E}_{Q(x)}\left[\ln P(x,y)\right]=\ln P(y)+\mathbb{E}_{Q(x)}\left[\ln(P(x|y)\right]
+    \end{equation}
+but we know from equation \ref{eq1.5} that
+\begin{equation}
+\ln P(y)=\mathbb{E}_{Q(x)}\left[\ln Q(x)-\ln P(x|y)\right]-F[Q,y]
+\end{equation}
+So we have:
+\begin{align}
+    \mathbb{E}_{Q(x)}\left[\ln P(x,y)\right]&=\mathbb{E}_{Q(x)}\left[\ln Q(x)-\ln P(x,y)\right]-F[Q,y]+\mathbb{E}_{Q(x)}\left[\ln P(x|y)\right]\\
+    &=-F[Q,y]+\mathbb{E}_{Q(x)}\left[\ln Q(x)-\ln P(x|y)+\ln P(x|y)\right]\\
+    &=-F(Q,y)+\mathbb{E}_{Q(x)}\left[\ln Q(x)\right]\label{eq1.11}
+\end{align}
+
+Comparing equation \ref{eq1.7} and \ref{eq1.11}:
+\begin{align}
+    \mathbb{E}_{P(x|y)}\left[\ln P(x,y)\right]&=\ln P(y)+\mathbb{E}_{P(x|y)}\left[\ln P(x|y)\right]\\
+    \mathbb{E}_{Q(x)}\left[\ln P(x,y)\right]&=-F(Q,y)+\mathbb{E}_{Q(x)}\left[\ln Q(x)\right]
+\end{align}
+So the free energy approximates the surprise and the $Q(x)$ approximates the posterior, $P(x|y)$.
+
+\subsection{Chapter 2 details}
+
+From chapter 2 we see three ways of writing the Free energy. We start with the equation above:
+\begin{equation}
+    F(Q,y)=-\mathbb{E}_{Q(x)}\left[\ln P(x,y)\right]+\mathbb{E}_{Q(x)}\left[\ln Q(x)\right]
+\end{equation}
+and note that the last term is the negative of the entropy of $Q$. This is a measure of the average surprise of the measurement of $Q(x)$. It's very important to note that this isn't the entropy coming from $P(y)$ which we want to minimise. This is over our approximation of $P(x|y)$. 
+
+The flatter is $Q(x)$, the larger will be its entropy.
+
+We can write:
+\begin{equation}
+    F(Q,y)=-\mathbb{E}_{Q(x)}\left[\ln P(x,y)\right]-H\left[ Q(x)\right]
+\end{equation}
+The two terms on the right are described as the energy and entropy. The energy is the consistency of $Q(x)$ with the generative model.
+
+The latter is the entropy, which, to minimise the free energy, we actually want to maximise over. This sounds surprising, but it means that if we have little evidence, then we should be maximally uncertain.
+
+
+We can expand this as:
+\begin{align}
+    F(Q,y)&=-\mathbb{E}_{Q(x)}\left[\ln \left(P(y|x)P(x)\right)\right]+\mathbb{E}_{Q(x)}\left[ \ln Q(x)\right]\\&=-
+    \mathbb{E}_{Q(x)}\left[\ln \left(\frac{P(y|x)P(x)}{Q(x)}\right)\right]\\
+    &=-
+    \mathbb{E}_{Q(x)}\left[\ln \left(\frac{P(x)}{Q(x)}\right)\right]-
+    \mathbb{E}_{Q(x)}\left[\ln P(y|x)\right]\\
+    &=-
+    \mathbb{E}_{Q(x)}\left[\ln \left(\frac{P(x)}{Q(x)}\right)\right]-
+    \mathbb{E}_{Q(x)}\left[\ln P(y|x)\right]
+    \\
+    &=
+    \mathbb{E}_{Q(x)}\left[\ln Q(x)-\ln P(x)\right]-
+    \mathbb{E}_{Q(x)}\left[\ln P(y|x)\right]
+     \\
+    &=
+    D_{KL}\left[Q(x)|| P(x)\right]-
+    \mathbb{E}_{Q(x)}\left[\ln P(y|x)\right]
+\end{align}
+The first term is the complexity, which we want to minimise. This says that we want $Q(x)$ to be as close as possible to $P(x)$, which means not overfitting - ie. not being too sure about some particular sensory state and thus missing something about states that we haven't seen too many times. This term will help to smooth the difference between $Q(x)$ and $P(x)$. The second term is the negative of the accuracy. We want to maximise the accuracy, which means having a high expectation of the particular observation, given the external state, averaged over the estimated priors of the external states.
+
+The third way that we can split this is the following:
+\begin{align}
+    F(Q,y)&=-\mathbb{E}_{Q(x)}\left[\ln \left(P(y|x)P(x)\right)\right]+\mathbb{E}_{Q(x)}\left[ \ln Q(x)\right]\\&=-
+    \mathbb{E}_{Q(x)}\left[\ln \left(\frac{P(y|x)P(x)}{Q(x)}\right)\right]
+    \\&=-
+    \mathbb{E}_{Q(x)}\left[\ln \left(\frac{P(y,x)}{Q(x)}\right)\right]
+    \\&=-
+    \mathbb{E}_{Q(x)}\left[\ln \left(\frac{P(x,y)}{Q(x)}\right)\right]
+     \\&=-
+    \mathbb{E}_{Q(x)}\left[\ln \left(\frac{P(x|y)P(y)}{Q(x)}\right)\right]
+     \\&=
+    \mathbb{E}_{Q(x)}\left[\ln Q(x)-\ln P(x|y)\right]-\mathbb{E}_{Q(x)}\left[\ln P(y)\right]
+         \\&=
+   D_{KL}\left[Q(x)|| P(x|y)\right]-\mathbb{E}_{Q(x)}\left[\ln P(y)\right]
+         \\&=
+   D_{KL}\left[Q(x)|| P(x|y)\right]-\ln P(y)
+\end{align}
+where here remembering that we want $Q(x)$ to approximate $P(x|y)$, the first term is the divergence between the two which we want to minimise while maximising the model evidence. 
+
+I think that it's worth comparing the complexity and the divergence, which are very similar. However, the divergence is dependent on the particular observation, whereas the complexity is only related to the generative model - ie. the prior over external states. The complexity says that we want $Q(x)$ to approximate the prior over external states as well as possible (we don't want to overfit to a given observation, $y$). The divergence says that we want $Q$ to approximate $P(x|y)$ for a given observation $y$ as well as possible.
+
+\subsection{Expected Free Energy from section 2.8}
+
+Here we have not just states, $x$ and observations $y$ but sequences of each, which we label $\tilde{x}$ and $\tilde{y}$. We also have a policy $\pi$, and a preference parameter $C$, which tells us the observations that we would most like to see.
+
+We now have our approximation to the posterior path through state space given by:
+
+\begin{equation}Q(\tilde{x}|\pi)\end{equation}
+
+This is a simple extension to the $Q$ we had before.
+
+However, we now introduce also:
+
+\begin{equation}Q(\tilde{x},\tilde{y}|\pi)=Q(\tilde{x}|\pi)P(\tilde{y}|\tilde{x})\end{equation}
+which is now an approximation to the joint probability of being on trajectory $\tilde{x}$ and making observations $\tilde{y}$. Note that we don't know the posterior $P(\tilde{x}|\tilde{y})$ but we do know the likelihood of observing $\tilde{y}$ given that we take trajectory $\tilde{x}$.
+
+It seems in equation 2.6 that we also have a quantity $Q(\tilde{y}|\pi)$, but to calculate this, do we not need to sum over all $\tilde{x}$, ie:
+\begin{equation}
+    Q(\tilde{y}|\pi)=\sum_{\tilde{x}} Q(\tilde{x},\tilde{y}|\pi)
+\end{equation}
+This sum over the external trajectories seems like something that we wanted to avoid in the first place, so it's not clear to me how we get $Q(\tilde{y}|\pi)$
+
+
+
+\chapter{Thoughts on the vectorised expected free energy}
+
+In chapter 4 we are given the following:
+
+\begin{equation}
+    \vec{\pi}_o=\sigma(-\vec{G})
+\end{equation}
+
+which says that the probability of using each policy is related to the expected free energy of that policy normalised via a sigma function.
+
+This means that $\vec{\pi}_o$ has the dimension of the number of different policies, and $\vec{G}$ is a vector of length $|\Pi|$, where $\Pi=\{\pi_1,\pi_2,\pi_3...\}$. The components of $\vec{G}$ can thus be indexed by the particular policy, $\pi$. We are next told that in vectorised form:
+\begin{equation} \label{Gvec}   \vec{G}_\pi=\vec{H}\cdot\vec{S}_{\pi\tau}+\vec{O}_{\pi\tau}\cdot\vec{\zeta}_{\pi\tau}
+\end{equation}
+
+While some of these quantities make sense to be vectorised as they all are in the text, it's not clear why they all are. In particular, $\vec{H}$ and $\vec{S}_{\pi\tau}$ live in the vector space of states, but when we dot them together, we should get a scalar in that space. Thus $\vec{G}_\pi$ would seem to be a scalar component, indexed simply by the policy.
+
+Now we have to work out what we are taking dot products over in the above.
+
+\begin{equation}
+\vec{S}_{\pi\tau}
+\end{equation}
+
+is the probability of being in a particular state at a given time $\tau$ given that we are using policy $\pi$. This means then that $\vec{S}_{\pi\tau}$ is a vector of states, and that is indexed by $\pi$ and $\tau$.
+
+\begin{tcolorbox}[colback=red!5!white,colframe=black!75!black]
+  
+
+We have to be very careful here because it looks like we've lost the approximations that we made using $Q$. However, $Q$ is now a vector over the discrete states. For example:
+
+Taking the vector $\vec{S}_{\pi\tau}$ which is a vector of probabilities that we will be in a given state, we note that this is really under our generative model, and so:
+$$Q(s_\tau|\pi)=cat(\vec{S}_{\pi\tau})$$
+
+So in a sense we can think that $Q$ inherits the discrete indices of the states and observations at discrete timesteps.
+\end{tcolorbox}
+
+
+We weight each state with $\vec{H}$ which is:
+\begin{equation}
+    \vec{H}=-\text{diag}\left(\vec{A}^T \cdot ln(\vec{A})\right)
+\end{equation}
+meaning that $\vec{H}$ is a row vector of the diagonals of the above. Note that I have made the first $\vec{A}$ into $\vec{A}^T$. %\textcolor{blue}{Note from F: I don't understand this. Surely $\bold{A} \cdot \ln{\bold{A}}$ should give us a scalar? Unless the $\cdot$ is not actually a scalar product - perhaps it is element-wise multiplication? And then this should also be applied to \eqref{Gvec}?} \textcolor{red}{Reply from J: I believe that this should really be $A^T.ln A$ meaning that you are summing over the observation direction and end up with something living purely in state space.}  
+$\vec{A}$ is a matrix of the probability of making a given observation given that you are in a particular state. This is part of the generative model. ie.
+\begin{equation}
+    \vec{A}=\left(
+\begin{array}{ccc}
+ \text{p(}o_1\left|s_1\right) & \text{p(}o_1\left|s_2\right) & \text{...} \\
+ \text{p(}o_2\left|s_1\right) & \text{p(}o_2\left|s_2\right) & \text{...} \\
+ \text{...} & \text{...} & \text{...} \\
+\end{array}
+\right)
+\end{equation}
+
+In a similar vein as for $\vec{S}_{\pi\tau}$, we have:
+$$Q(o_\tau|\pi)=Cat(\vec{A}\vec{s}_{\pi\tau})=Cat(\vec{o}_{\pi\tau})$$
+which says that from our observation matrix, which is the dot product between the generative model state probabilities and the generative model relationship between states and observations, we form our approximation of what we expect that observations to be.
+
+\begin{tcolorbox}[colback=red!5!white,colframe=black!75!black]
+
+We note that in writing this, it looks like we have marginalised out over the states. However, we are not marginalising out over the true states, but those states captured by the generative model only. This is an important distinction. Given a distribution over policies (ie. the probability of being in a given policy), a distribution over states at a given time, under a given policy and the generative model of how states give rise to observations, we can form:
+\begin{align}
+    Q(s_\tau)&=Cat(\sum_\pi \pi_\pi \vec{S}_{\pi\tau}])\\
+    Q(s_\tau|\pi)&=Cat(\vec{S}_{\pi\tau})\\
+    Q(o_\tau|\pi)&=Cat(\vec{A}\vec{S}_{\pi\tau})=Cat(\vec{O}_{\pi\tau})\\
+\end{align}
+\end{tcolorbox}
+
+Therefore $\vec{H}$ seems to be a vector living in the space of states. It makes sense then to take the dot product between $\vec{H}$ and $\vec{S}_{\pi\tau}$ but it does mean that we are left with both the $\pi$ AND the $\tau$ indices. It seems that the tau indices somehow need to be summed over to give us our $\vec{G}$.
+
+Now looking at the second term:
+\begin{equation}
+    \vec{O}_{\pi\tau}=\vec{A}\vec{S}_{\pi\tau}
+\end{equation}
+$\vec{A}$ is a matrix indexed over states and observations, and we are using the matrix multiplication with the vector of the probability of being in a given state at a particular time under a particular policy. So this vector quantity $\vec{o}$ is essentially the probability of making a particular observation given that we are timestep $\tau$ and we are under policy $\pi$. 
+
+Finally the quantity:
+\begin{equation}
+   \vec{\zeta}_{\pi\tau}=\ln \vec{o}_{\pi\tau}-ln \vec{C_\tau}
+\end{equation}
+$\vec{C}$ should be independent of the policy and is related to our preference (or indeed prior) over observations.
+
+So the second term in equation \ref{Gvec} has a dot product over the observation space whereas the first term is a dot product over the state space.
+
+Writing the whole thing out, component-wise, I believe we get:
+
+\begin{equation} \label{Gvec}   {G}_\pi=\left[\sum_s\left(-\text{diag}\left(\sum_o\left({A}^T\right)_{so} \left(ln({A})\right)_{os}\right)\left({S}_{\pi\tau}\right)_s\right)\right]+\left[\sum_o\left(\left(\sum_s\left({A}^T\right)_{os}\left({S}_{\pi\tau}\right)_s\right)\left(\left(\ln {o}_{\pi\tau}\right)_o-\left(ln {C_\tau}\right)_o\right)\right)\right]
+\end{equation}
+The question then is what happens to $\tau$. I think that there should really be a $\tau$ index on $G_\pi$ as well.
+
+
+\chapter{More details on the expected free energy}
+We have looked in the last section at one way of writing the expected free energy, given in chapter 4. This is:
+
+
+\begin{align} \label{Gvec2}   {G}_{\tau\pi}&=\vec{H}\cdot\vec{S}_{\pi\tau}+\vec{O}_{\pi\tau}\cdot\vec{\zeta}_{\pi\tau}\nonumber\\
+&=\left[\sum_s\left(-\text{diag}\left(\sum_o\left({A}^T\right)_{so} \left(ln({A})\right)_{os}\right)\left({S}_{\pi\tau}\right)_s\right)\right]+\left[\sum_o\left(\left(\sum_s\left({A}^T\right)_{os}\left({S}_{\pi\tau}\right)_s\right)\left(\left(\ln {o}_{\pi\tau}\right)_o-\left(ln {C_\tau}\right)_o\right)\right)\right]
+\end{align}
+Where we have put the $\tau$ index back on $G$. How does this expression relate to any of the others in the previous chapters?
+
+This comes from the non-vectorised expression given by:
+\begin{equation}
+    G(\pi)=\mathbb{E}_{\tilde{Q}}\left[H\left[P(\tilde{o}|\tilde{s})\right]\right]+D_{KL}\left[Q(\tilde{o}|\pi)||P(\tilde{o}|C)\right]
+\end{equation}
+which is described as the expected ambiguity plus the risk.
+
+This now makes some more sense, as we have an expectation over $\tilde{Q}$ which is captured via the categorical variable in $S_{\pi\tau}$ of the entropy of $P(\tilde{o}|\tilde{s})$ which is captured in the $\vec{A}$ matrix. So this first term makes sense. 
+
+We should also note that when it says $\tilde{Q}$ it really means $Q(\tilde{s}|\pi)$
+
+For the second term we have, in the non-vectorised version the difference in the distributions between what we want/expect to observe, and what we are actually observing. In the vectorised version we have the difference between the probability of observations matrix and the preference distribution matrix. Remembering that the definition of the KL-divergence is the expectation over the difference in logs of the distribution, this term also makes sense.
+
+Can we be a bit clearer about why we call them "ambiguity" and "risk"?
+
+If the matrix of $P(\tilde{o}|\tilde{s})$ is sparse, or at best diagonal, then we have a really strong belief in what observations will come from what states. This means that we see something, and we know what it is. This is in contrast to a matrix which is non-sparse, which would mean that a given state could give rise to many different observations. This would clearly have a high entropy. 
+
+For the KL divergence we call this the risk term because it measures how far away our distribution over expected observations given the policy is from our preference distribution.
+
+\section{Different ways of writing the expected free energy}
+
+Now let's revisit the different ways that we can write the expected free energy.
+
+The ambiguity+risk descriptions seems clear. We want a policy which will make our observations unambiguous while also having a small risk. We don't want to be really certain about the fact that we are on fire. Nor do we want to think that in the future we will be at the perfect temperature, but not be sure about what our observations are really telling us.
+
+Just as we we did for the free energy, we will see the different ways to split up this expression. The best way to do this is to expand it out as much as possible first:
+\begin{align}
+G(\pi)&=\mathbb{E}_{Q(\tilde{s}|\pi)}\left[H\left[P(\tilde{o}|\tilde{s})\right]\right]+D_{KL}\left[Q(\tilde{o}|\pi)||P(\tilde{o}|C)\right]\\
+&=-\sum_{\tilde{s}}\left[Q(\tilde{s}|\pi)\sum_{\tilde{o}}P(\tilde{o}|\tilde{s})\ln P(\tilde{o}|\tilde{s})\right]+\sum_{\tilde{o}}Q(\tilde{o}|\pi)\left(\ln Q(\tilde{o}|\pi)-\ln P(\tilde{o}|C)\right)\label{ambrisk}
+\end{align}
+where again we should remember that $P(\tilde{o}|\tilde{s})$ are not dependent on the policy, but they are known within our generative model.
+
+The other way of writing this in chapter 2 is (though converting all to $s$ and $o$ from $x$ and $y$):
+
+\begin{align}
+G(\pi)&=-\mathbb{E}_{Q(\tilde{s},\tilde{o}|\pi)}\left[D_{KL}[Q(\tilde{s}|\tilde{o},\pi)||Q(\tilde{s}|\pi)]]\right]-\mathbb{E}_{Q(\tilde{o}|\pi)}\left[\ln P(\tilde{o}|C)\right]\label{secondGKL}
+\end{align}
+We are however going to rewrite this slightly as it turns out that the KL divergence in the first term is not needed, and we can simply write it as the difference in logs:
+\begin{align}
+G(\pi)&=-\mathbb{E}_{Q(\tilde{s},\tilde{o}|\pi)}\left[\ln Q(\tilde{s}|\tilde{o},\pi)-\ln Q(\tilde{s}|\pi)\right]-\mathbb{E}_{Q(\tilde{o}|\pi)}\left[\ln P(\tilde{o}|C)\right]\\
+    &=\sum_{\tilde{s}}\sum_{\tilde{o}}-Q(\tilde{s},\tilde{o}|\pi)(\ln Q(\tilde{s}|\tilde{o},\pi)-\ln Q(\tilde{s}|\pi))-\sum_{\tilde{o}}Q(\tilde{o}|\pi)\ln P(\tilde{o}|C)\\&=
+    \sum_{\tilde{s}}\sum_{\tilde{o}}Q(\tilde{s},\tilde{o}|\pi)(\ln Q(\tilde{s}|\pi)-\ln Q(\tilde{s}|\tilde{o},\pi))-\sum_{\tilde{o}}Q(\tilde{o}|\pi)\ln P(\tilde{o}|C)\\&=
+    \sum_{\tilde{s}}\sum_{\tilde{o}}P(\tilde{o}|\tilde{s})Q(\tilde{s}|\pi)(\ln Q(\tilde{s}|\pi)-\ln Q(\tilde{s}|\tilde{o},\pi))-\sum_{\tilde{o}}Q(\tilde{o}|\pi)\ln P(\tilde{o}|C)\label{secondG}
+\end{align}
+
+where in the last line we used the definition that:
+$$Q(\tilde{o},\tilde{s}|\pi)=P(\tilde{o}|\tilde{s})Q(\tilde{s}|\pi)$$
+but we can also write that:
+$$Q(\tilde{o},\tilde{s}|\pi)=Q(\tilde{o}|\tilde{s})Q(\tilde{s}|\pi)$$
+meaning that really $Q(\tilde{o}|\tilde{s},\pi)=P(\tilde{o}|\tilde{s})$ which just says that we are just using our generative model for how an observation is dependent on a state.
+
+
+So the last terms in equations \ref{ambrisk} and \ref{secondG} are clearly equal. Now we need to show that the rest are equal. We can take everything inside the double sum in equation \ref{ambrisk} by writing everything but the last term as:
+\begin{align}
+&-\sum_{\tilde{s}}\left[Q(\tilde{s}|\pi)\sum_{\tilde{o}}P(\tilde{o}|\tilde{s})\ln P(\tilde{o}|\tilde{s})\right]+\sum_{\tilde{o}}Q(\tilde{o}|\pi)\ln Q(\tilde{o}|\pi)\\
+&=-\sum_{\tilde{s}}\left[Q(\tilde{s}|\pi)\sum_{\tilde{o}}P(\tilde{o}|\tilde{s})\ln P(\tilde{o}|\tilde{s})\right]+\sum_{\tilde{s}}Q(\tilde{s}|\pi)\sum_{\tilde{o}}Q(\tilde{o}|\pi)\ln Q(\tilde{o}|\pi)\\&=
+\sum_{\tilde{s}}\sum_{\tilde{o}}Q(\tilde{s}|\pi)(Q(\tilde{o}|\pi)\ln Q(\tilde{o}|\pi)-P(\tilde{o}|\tilde{s})\ln P(\tilde{o}|\tilde{s}))
+\end{align}
+So what we need to be able to show is that:
+\begin{equation}
+    P(\tilde{o}|\tilde{s})Q(\tilde{s}|\pi)(\ln Q(\tilde{s}|\pi)-\ln Q(\tilde{s}|\tilde{o},\pi))=Q(\tilde{s}|\pi)(Q(\tilde{o}|\pi)\ln Q(\tilde{o}|\pi)-P(\tilde{o}|\tilde{s})\ln P(\tilde{o}|\tilde{s}))
+\end{equation}
+ie.
+\begin{equation}
+    P(\tilde{o}|\tilde{s})(\ln Q(\tilde{s}|\pi)-\ln Q(\tilde{s}|\tilde{o},\pi))=(Q(\tilde{o}|\pi)\ln Q(\tilde{o}|\pi)-P(\tilde{o}|\tilde{s})\ln P(\tilde{o}|\tilde{s}))
+\end{equation}
+
+We can use Bayes' to write:
+$$Q(\tilde{s}|\tilde{o},\pi)=Q(\tilde{o}|\tilde{s},\pi)\frac{Q(\tilde{s}|\pi)}{Q(\tilde{o}|\pi)}$$
+
+
+
+
+Again $Q(\tilde{o}|\tilde{s},\pi)$ is actually not dependent on the policy, and is equal to $P(\tilde{o}|\tilde{s})$. So:
+$$Q(\tilde{s}|\tilde{o},\pi)=P(\tilde{o}|\tilde{s})\frac{Q(\tilde{s}|\pi)}{Q(\tilde{o}|\pi)}$$
+
+So we have:
+
+\begin{align}
+   &P(\tilde{o}|\tilde{s})(\ln Q(\tilde{s}|\pi)-\ln Q(\tilde{s}|\tilde{o},\pi))\\&=
+   P(\tilde{o}|\tilde{s})(\ln Q(\tilde{s}|\pi)-\ln \left(P(\tilde{o}|\tilde{s})\frac{Q(\tilde{s}|\pi)}{Q(\tilde{o}|\pi)}\right))\\&=
+   P(\tilde{o}|\tilde{s})(\ln Q(\tilde{o}|\pi)-\ln \left(P(\tilde{o}|\tilde{s})\right))
+\end{align}
+
+We have to be a little careful here as we are not equating the terms above, but really the expectation over these terms, so for the two expressions to be the same we need that:
+
+\begin{align}
+    \sum_{\tilde{s}}\sum_{\tilde{o}}Q(\tilde{s}|\pi) (P(\tilde{o}|\tilde{s})\ln Q(\tilde{o}|\pi)-P(\tilde{o}|\tilde{s})\ln \left(P(\tilde{o}|\tilde{s})\right))=\sum_{\tilde{s}}\sum_{\tilde{o}}Q(\tilde{s}|\pi)(Q(\tilde{o}|\pi)\ln Q(\tilde{o}|\pi)-P(\tilde{o}|\tilde{s})\ln P(\tilde{o}|\tilde{s}))
+\end{align}
+One of these terms matches. Can we now show that:
+\begin{align}
+    \sum_{\tilde{s}}\sum_{\tilde{o}}Q(\tilde{s}|\pi) (P(\tilde{o}|\tilde{s})\ln Q(\tilde{o}|\pi))=\sum_{\tilde{s}}\sum_{\tilde{o}}Q(\tilde{s}|\pi)(Q(\tilde{o}|\pi)\ln Q(\tilde{o}|\pi))
+\end{align}
+We note that on the right hand side, the only $\tilde{s}$ is in $Q(\tilde{s}|\pi)$ and therefore we can remove that sum immediately. So we have:
+\begin{align}
+\sum_{\tilde{s}}\sum_{\tilde{o}}Q(\tilde{s}|\pi) (P(\tilde{o}|\tilde{s})\ln Q(\tilde{o}|\pi))=\sum_{\tilde{o}}(Q(\tilde{o}|\pi)\ln Q(\tilde{o}|\pi))
+\end{align}
+We can also rewrite $P(\tilde{o}|\tilde{s})=Q(\tilde{o}|\tilde{s},\pi)$
+\begin{align}
+\sum_{\tilde{s}}\sum_{\tilde{o}}Q(\tilde{s}|\pi) Q(\tilde{o}|\tilde{s},\pi)\ln Q(\tilde{o}|\pi)=\sum_{\tilde{o}}(Q(\tilde{o}|\pi)\ln Q(\tilde{o}|\pi))
+\end{align}
+and finally we see that:
+$$\sum_{\tilde{s}} Q(\tilde{s}|\pi)Q(\tilde{o}|\tilde{s},\pi)=Q(\tilde{o},\pi)$$
+which is exactly what we need...and the two sides are the same!
+
+OK, so having convinced ourselves that these are the same, we can feel confident in analysing what the secondary way of writing it means. Now we see why writing \ref{secondGKL} in terms of the KL divergence may be smart. We write it again here for reference:
+\begin{align}
+G(\pi)&=-\mathbb{E}_{Q(\tilde{s},\tilde{o}|\pi)}\left[D_{KL}[Q(\tilde{s}|\tilde{o},\pi)||Q(\tilde{s}|\pi)]]\right]-\mathbb{E}_{Q(\tilde{o}|\pi)}\left[\ln P(\tilde{o}|C)\right]
+\end{align}
+We want to minimize this expression. There are two terms with - signs in front, so we want to maximise each of these. Maximising the first means making $Q(\tilde{s}|\tilde{o},\pi)$ as different from $Q(\tilde{s}|\pi)$ as  possible, which means that we seek observations which give us knew information. That is, if you thought that you were in a given state, but you make an observation, you want it to give you maximal new information about which state you are really in. The second terms says that you want to make observations which are as close to preferred observations as possible. 
+ 
+
+\end{document}

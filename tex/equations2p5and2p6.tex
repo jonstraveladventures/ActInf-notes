@@ -1,0 +1,251 @@
+\documentclass[11pt,oneside]{memoir}
+\usepackage{makeidx,latexsym,amssymb}
+\usepackage{fancybox}
+\usepackage{graphics,epsfig}
+\usepackage{ifthen}
+\usepackage{epstopdf}
+\usepackage{amsmath,amsfonts,pgf,tikz,hyperref,amsthm,xcolor}
+\usepackage{latexsym,amsthm,amsfonts}
+%\usepackage{amsthm}
+%\usepackage{makeidx}
+\usepackage{enumerate}
+\usepackage[all]{xy}
+
+%for TAC
+
+\usepackage{amssymb,amsthm,enumerate}
+%\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfplots}
+\usepackage{tkz-fct}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\usepackage{CJKutf8}
+
+
+
+
+%% Language and font encodings
+\usepackage{mathrsfs}
+\usepackage{paralist}
+%\usepackage[inline]{enumitem}
+\usepackage[many]{tcolorbox}
+
+\usepackage{tikz,lipsum,lmodern}
+%\usepackage{hyperref}
+\usepackage[english]{babel}
+%\usepackage[utf8x]{inputenc}
+\usepackage{float}
+
+\usepackage{polynom}
+\makeatletter
+\def\pld@CF@loop#1+{%
+    \ifx\relax#1\else
+        \begingroup
+          \pld@AccuSetX11%
+          \def\pld@frac{{}{}}\let\pld@symbols\@empty\let\pld@vars\@empty
+          \pld@false
+          #1%
+          \let\pld@temp\@empty
+          \pld@AccuIfOne{}{\pld@AccuGet\pld@temp
+                            \edef\pld@temp{\noexpand\pld@R\pld@temp}}%
+           \pld@if \pld@Extend\pld@temp{\expandafter\pld@F\pld@frac}\fi
+           \expandafter\pld@CF@loop@\pld@symbols\relax\@empty
+           \expandafter\pld@CF@loop@\pld@vars\relax\@empty
+           \ifx\@empty\pld@temp
+               \def\pld@temp{\pld@R11}%
+           \fi
+          \global\let\@gtempa\pld@temp
+        \endgroup
+        \ifx\@empty\@gtempa\else
+            \pld@ExtendPoly\pld@tempoly\@gtempa
+        \fi
+        \expandafter\pld@CF@loop
+    \fi}
+\def\pld@CMAddToTempoly{%
+    \pld@AccuGet\pld@temp\edef\pld@temp{\noexpand\pld@R\pld@temp}%
+    \pld@CondenseMonomials\pld@false\pld@symbols
+    \ifx\pld@symbols\@empty \else
+        \pld@ExtendPoly\pld@temp\pld@symbols
+    \fi
+    \ifx\pld@temp\@empty \else
+        \pld@if
+            \expandafter\pld@IfSum\expandafter{\pld@temp}%
+                {\expandafter\def\expandafter\pld@temp\expandafter
+                    {\expandafter\pld@F\expandafter{\pld@temp}{}}}%
+                {}%
+        \fi
+        \pld@ExtendPoly\pld@tempoly\pld@temp
+        \pld@Extend\pld@tempoly{\pld@monom}%
+    \fi}
+\makeatother
+
+
+
+
+
+\floatstyle{boxed} 
+\restylefloat{figure}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+%\AtBeginEnvironment{align}{\setcounter{equation}{0}}%%reset counter
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{CJKutf8}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+%\usepackage[shortlabels]{enumitem}
+
+\usepackage{amsthm}
+
+
+
+
+
+
+
+
+
+\newtheorem{definition}{Definition}[section]
+%\newtheorem{example}[definition]{Example}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{condition}[definition]{Condition}
+\newtheorem{convention}[definition]{Convention}
+\newtheorem{exercise}[definition]{Exercise}
+\newtheorem{cyu}{Check your understanding}[section]
+
+
+%\newcommand{\dfrac}{\displaystyle\frac}
+\newtheorem{thr}{Theorem}[section]
+\newcommand{\bthr}[1]{\begin{thr}\emph{#1}}
+\newcommand{\ethr}{\end{thr}}
+\newtheorem{pr}[thr]{Proposition}
+\newcommand{\bprp}[1]{\begin{pr}\emph{#1}}
+\newcommand{\eprp}{\end{pr}}
+\newtheorem{ex}[thr]{Example}
+\newcommand{\bex}[1]{\begin{ex}\emph{#1}}
+\newcommand{\eex}{\end{ex}}
+\newcommand{\beqn}{\begin{eqnarray*}}
+\newcommand{\eeqn}{\end{eqnarray*}}
+\newtheorem{defin}[thr]{Definition}
+\newcommand{\bdfn}[1]{\begin{defin}{\emph{#1}}}
+\newcommand{\edfn}{\end{defin}}
+%\newcommand{\binom}[2]{\left(\begin{array}{c}{#1}\\{#2}\end{array}\right)}
+\newcommand{\st}{\,:\,}
+\newcommand{\nnum}{\mathbb{N}}
+\newcommand{\znum}{\mathbb{Z}}
+\newcommand{\qnum}{\mathbb{Q}}
+\newcommand{\rnum}{\mathbb{R}}
+%\newenvironment{proof}{\noindent\textbf{Proof}: }{}
+\newcommand{\bprf}{\begin{proof}}
+\newcommand{\eprf}{$\phantom{X}$\hfill$\rule{2mm}{2mm}$
+\end{proof}}
+\newcommand{\btrv}{\begin{trivlist}}
+\newcommand{\etrv}{\end{trivlist}}
+
+
+\newcommand{\version}{2}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcounter{example}
+\setcounter{example}{0}
+\newenvironment{example}{\sffamily \refstepcounter{example} \ \\[5mm] \noindent {\bfseries \textsf{Example \theexample}}\ }{\  \\[3mm] \rmfamily}
+
+
+\newtheorem{thm}[example]{Theorem}
+\newtheorem{lem}[example]{Lemma}
+\makechapterstyle{booklet}{%  needs graphicx package
+ \chapterstyle{default}
+ \setlength{\beforechapskip}{-1cm}
+ \setlength{\afterchapskip}{1cm}
+ \setlength{\midchapskip}{2cm}
+ \renewcommand*{\printchaptername}{\raggedleft}
+ \renewcommand*{\chapnamefont}{\raggedleft}
+ \renewcommand*{\chaptitlefont}{\normalfont\huge\bfseries\sffamily\raggedleft}
+ \renewcommand*{\chapternamenum}{}
+ \renewcommand*{\printchapternum}{\makebox[0pt][l]{\hspace{0.2em}%
+   {\hspace{0.5cm}\normalfont\huge\bfseries\sffamily\thechapter}}}
+ \renewcommand*{\afterchapternum}{\ \\[-1.40cm]\hspace{1.5cm}\hrule\vspace{0.1cm}}
+\renewcommand*{\printchapternonum}{\vphantom{\chapnamefont 1}\afterchapternum}
+ \renewcommand*{\afterchaptertitle}{\vskip 0.4cm
+   \hrule\vskip\afterchapskip}
+\renewcommand*{\clearforchapter}{\newpage}
+}
+
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\limh}{\lim_{h \rightarrow 0}}
+
+\chapterstyle{booklet}
+\settocdepth{subsection}
+%\setsecnumdepth{subsection}
+
+\setsecheadstyle{\bfseries\Large\sffamily}
+\setbeforesecskip{0.2cm}
+\setaftersecskip{0.1cm}
+
+\setsubsecheadstyle{\bfseries\large\sffamily}
+\setbeforesubsecskip{0.2cm}
+\setaftersubsecskip{0.1cm}
+
+\setsubsubsecheadstyle{\bfseries\sffamily}
+\setbeforesubsubsecskip{0cm}
+\setaftersubsubsecskip{0cm}
+
+%\textwidth 14cm
+%\textheight 21cm
+%\oddsidemargin 1.0cm
+%\evensidemargin 1.0cm
+\marginparwidth 0cm
+\marginparsep 0cm
+%\topmargin 0.0cm
+
+\oddsidemargin=-5mm
+\evensidemargin=-5mm
+\textwidth=17cm
+\topmargin=-10mm
+\textheight=23.5cm
+
+\parindent 0cm
+\parskip 0.3cm
+
+%\renewcommand{\labelenumi}{(\arabic{enumi})}   %Nummerierungen
+\tightlists
+
+\makeindex
+
+
+%\pgfdeclareimage[height=3in]{drx}{drx}
+%\pgfdeclareimage[height=8in]{tut5q}{tut5q}
+%\pgfdeclareimage[height=3in]{tut5q3a}{tut5q3a}
+%\pgfdeclareimage[height=4in]{tut6q2}{tut6q2a}
+%\pgfdeclareimage[height=2.3in]{tut6q3a}{tut6q3a}
+\begin{document}
+
+The aim of this document will be to guide the reader to understand where equations 2.5 and 2.6 come from and what they really mean.
+
+Equation 2.5:
+
+\begin{align}
+    F[Q,y]&=-\mathbb{E}_{Q(x)}\left[\ln P(y,x)\right]-H[Q(x)]\\&=D_{KL}[Q(x)||P(x)]-\mathbb{E}_{Q(x)}[\ln P(y|x)]\\&=D_{KL}[Q(x)||P(x|y))]-\ln(P(y))
+\end{align}
+
+The connection between these equations can be seen in the other document around equations 1.24 onwards.
+
+\end{document}
